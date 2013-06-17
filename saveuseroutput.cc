@@ -29,12 +29,12 @@ static uint endFileName;
 void loaded (html *page) {
   nbfile++;
   if (nbfile < filesPerDir) {
-    int tmp = nbfile;
-    int pos = endFileName;
-    while (tmp != 0) {
-      fileName[pos--] = '0' + (tmp % 10);
-      tmp /= 10;
-    }
+    //int tmp = nbfile;
+    //int pos = endFileName;
+    //while (tmp != 0) {
+    //  fileName[pos--] = '0' + (tmp % 10);
+    //  tmp /= 10;
+    //}
   } else { // new dir
     // create the directory
     nbdir++; nbfile = 0;
@@ -56,24 +56,24 @@ void loaded (html *page) {
       exit(1);
     }
     // new filename
-    fileName[endFileName-5] = 'f';
-    for (uint i=endFileName; i>endFileName-5; i--) fileName[i]='0';
+    //fileName[endFileName-5] = 'f';
+    //for (uint i=endFileName; i>endFileName-5; i--) fileName[i]='0';
   }
-  int fd = creat(fileName, S_IRWXU);
-  if (fd < 0) {
-    cerr << "cannot open file " << fileName << "\n";
-    exit(1);
-  }
+  //int fd = creat(fileName, S_IRWXU);
+  //if (fd < 0) {
+  //  cerr << "cannot open file " << fileName << "\n";
+  //  exit(1);
+  //}
   int s=0;
   s = sprintf(buf, "%4u ", nbfile);
-#ifdef URL_TAGS
-  s += sprintf(buf+s, "(%u) ", page->getUrl()->tag);
-#endif // URL_TAGS
+//#ifdef URL_TAGS
+//  s += sprintf(buf+s, "(%u) ", page->getUrl()->tag);
+//#endif // URL_TAGS
   s += page->getUrl()->writeUrl(buf+s);
   buf[s++] = '\n';
   ecrireBuff(indexFds, buf, s);
-  ecrireBuff(fd, page->getPage(), page->getLength());
-  close(fd);
+//  ecrireBuff(fd, page->getPage(), page->getLength());
+//  close(fd);
 }
 
 /** The fetch failed
