@@ -72,8 +72,8 @@ void loaded (html *page) {
   s += page->getUrl()->writeUrl(buf+s);
   buf[s++] = '\n';
   ecrireBuff(indexFds, buf, s);
- // ecrireBuff(fd, page->getPage(), page->getLength());
- // close(fd);
+//  ecrireBuff(fd, page->getPage(), page->getLength());
+//  close(fd);
 }
 
 /** The fetch failed
